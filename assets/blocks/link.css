@@ -1,0 +1,19 @@
+.link {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1c2022;
+    cursor: pointer;
+}
+
+.link._active {
+    color: #bb2e1f;
+}
+
+.link._underline {
+    text-decoration: underline;
+}
+
+.app__theme._dark .link:not(._active) {
+    color: white;
+}

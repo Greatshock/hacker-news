@@ -1,0 +1,14 @@
+.app__container {
+    margin: 0 auto;
+    padding: 50px;
+    max-width: 1200px;
+}
+
+.app__theme {
+    width: 100vw;
+    height: 100vh;
+}
+
+.app__theme._dark {
+    background-color: #1c2022;
+}

@@ -1,0 +1,8 @@
+@import "normalize.css";
+
+/* Blocks */
+@import "blocks/link.css";
+
+/* Components */
+@import "components/app.css";
+@import "components/navbar.css";
