@@ -11,9 +11,23 @@
 }
 
 .link._underline {
+    font-size: 16px;
+    font-weight: normal;
     text-decoration: underline;
 }
 
 .app__theme._dark .link:not(._active) {
     color: white;
+}
+
+.link.title__link {
+    color: #bb2e1f;
+}
+
+.app__theme._dark .link._underline {
+    color: #bebebe;
+}
+
+.app__theme._dark .link.title__link {
+    color: rgb(203, 203, 203);
 }

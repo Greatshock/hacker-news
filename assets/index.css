@@ -2,7 +2,9 @@
 
 /* Blocks */
 @import "blocks/link.css";
+@import "blocks/text.css";
 
 /* Components */
 @import "components/app.css";
 @import "components/navbar.css";
+@import "components/posts-list.css";

@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {ThemeProvider} from './contexts/theme.context';
 import Navbar from './components/Navbar';
+import Loader from './components/common/Loader';
+
+const Posts = React.lazy(() => import('./components/posts'));
 
 class App extends React.Component {
     state = {
@@ -20,29 +23,23 @@ class App extends React.Component {
             <ThemeProvider value={this.state}>
                 <Router>
                     <div className={`app__theme _${this.state.theme}`}>
-                        <div className="app__container">
+                        <div className='app__container'>
                             <Navbar />
 
-                            <Switch>
-                                <Route
-                                    exact
-                                    path="/"
-                                    render={() => 'Top'}
-                                />
-                                <Route
-                                    path="/new"
-                                    render={() => 'New'}
-                                />
-                                <Route
-                                    path="/post"
-                                    render={() => 'Post'}
-                                />
-                                <Route
-                                    path="/user"
-                                    render={() => 'User'}
-                                />
-                                <Route render={() => <h1>404</h1>} />
-                            </Switch>
+                            <React.Suspense fallback={<Loader />}>
+                                <Switch>
+                                    <Route
+                                        exact
+                                        path='/'
+                                        render={() => <Posts type='top' />}
+                                    />
+                                    <Route
+                                        path='/new'
+                                        render={() => <Posts type='new' />}
+                                    />
+                                    <Route render={() => <h1>404</h1>} />
+                                </Switch>
+                            </React.Suspense>
                         </div>
                     </div>
                 </Router>

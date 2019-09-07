@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {fetchMainPosts} from '../utils/api';
+import Loader from './common/Loader';
+import PostsList from './common/PostsList';
 
 export default class Posts extends React.Component {
     state = {
@@ -20,9 +22,20 @@ export default class Posts extends React.Component {
     }
 
     render() {
+        const {posts, error, loading} = this.state;
+
+        if (loading) {
+            return <Loader />;
+        }
+
+        if (error) {
+            return <h4>Error occurred: {error}</h4>
+        }
+
         return (
-            <div className="posts">
-            </div>
+            <React.Fragment>
+                <PostsList posts={posts} />
+            </React.Fragment>
         );
     }
 

@@ -1,0 +1,8 @@
+.posts-list__post {
+    margin: 20px 0;
+    list-style: none;
+}
+
+.posts-list__post-info {
+    margin-top: 5px;
+}
