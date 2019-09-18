@@ -1,65 +1,60 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {fetchMainPosts} from '../utils/api';
-import Loader from './common/Loader';
-import PostsList from './common/PostsList';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { fetchMainPosts } from '../utils/api'
+import Loading from './Loading'
+import PostsList from './PostsList'
 
-export default class Posts extends React.Component {
-    state = {
-        posts: null,
-        error: false,
-        loading: true
-    };
-
-    componentDidMount() {
-        this.getPosts();
+function postsReducer (state, action) {
+  if (action.type === 'fetch') {
+    return {
+      posts: null,
+      error: null,
+      loading: true
     }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.type !== this.props.type) {
-            this.getPosts();
-        }
+  } else if (action.type === 'success') {
+    return {
+      posts: action.posts,
+      error: null,
+      loading: false
     }
-
-    render() {
-        const {posts, error, loading} = this.state;
-
-        if (loading) {
-            return <Loader />;
-        }
-
-        if (error) {
-            return <h4>Error occurred: {error}</h4>
-        }
-
-        return (
-            <React.Fragment>
-                <PostsList posts={posts} />
-            </React.Fragment>
-        );
+  } else if (action.type === 'error') {
+    return {
+      posts: state.posts,
+      error: action.message,
+      loading: false
     }
+  } else {
+    throw new Error('This action is not supported');
+  }
+}
 
-    getPosts() {
-        this.setState({
-            posts: null,
-            error: false,
-            loading: true
-        });
+export default function Posts ({ type }) {
+  const [state, dispatch] = React.useReducer(
+    postsReducer,
+    {posts: null, error: null, loading: true}
+  );
 
-        fetchMainPosts(this.props.type)
-            .then(posts => this.setState({
-                posts,
-                loading: false,
-                error: null
-            }))
-            .catch(error => this.setState({
-                loading: false,
-                error
-            }))
-    }
+  React.useEffect(() => {
+    dispatch({type: 'fetch'});
+
+    fetchMainPosts(type)
+      .then(posts => dispatch({type: 'success', posts}))
+      .catch(({message}) => dispatch({type: 'error', message}))
+  }, [type]);
+
+  const { posts, error, loading } = state;
+
+  if (loading === true) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <p className='center-text error'>{error}</p>
+  }
+
+  return <PostsList posts={posts} />
 }
 
 Posts.propTypes = {
-    type: PropTypes.oneOf(['top', 'new'])
+  type: PropTypes.oneOf(['top', 'new'])
 };
-

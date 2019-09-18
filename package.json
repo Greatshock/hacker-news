@@ -1,7 +1,7 @@
 {
-  "name": "github-battle",
+  "name": "react-hooks-course-curriculum",
   "version": "1.0.0",
-  "description": "",
+  "description": "Curriculum for TylerMcGinnis.com's React Hooks course.",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
@@ -23,25 +23,24 @@
   "license": "ISC",
   "dependencies": {
     "prop-types": "^15.7.2",
-    "query-string": "^6.4.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-icons": "^3.5.0",
-    "react-router-dom": "^4.3.1"
+    "query-string": "^6.8.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.0.6",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "copy-webpack-plugin": "^5.0.1",
-    "css-loader": "^2.1.1",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-loader": "^3.1.0",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1"
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
   }
 }
